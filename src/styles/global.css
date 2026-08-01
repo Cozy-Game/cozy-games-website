@@ -117,7 +117,8 @@ a:hover {
   line-height: 1.05;
   letter-spacing: 0.045em;
   text-transform: lowercase;
-  margin: 0.12em 0 0.1em;
+  /* Negative top margin absorbs the logo PNG's transparent padding */
+  margin: -0.4em 0 0.2em;
   color: var(--cream);
   text-shadow: 0 4px 30px rgba(0, 0, 0, 0.35);
 }
@@ -126,7 +127,7 @@ a:hover {
   font-size: clamp(1.05rem, 2.4vw, 1.5rem);
   font-weight: 600;
   color: var(--ink-soft);
-  margin: 0.4rem 0 2.4rem;
+  margin: 1.1rem 0 2.4rem;
   max-width: 28ch;
 }
 
@@ -163,7 +164,7 @@ a:hover {
 /* ---------- Logo ---------- */
 
 .logo {
-  width: clamp(170px, 28vw, 320px);
+  width: clamp(190px, 31vw, 355px);
   height: auto;
   filter: drop-shadow(0 18px 45px rgba(0, 0, 0, 0.55));
 }
