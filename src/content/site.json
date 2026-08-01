@@ -8,7 +8,7 @@
     "groups": [
       {
         "heading": "Contact",
-        "links": [{ "label": "Support", "href": "#/support" }]
+        "links": [{ "label": "info@cozy.game", "href": "mailto:info@cozy.game" }]
       },
       {
         "heading": "Legal",
@@ -33,13 +33,6 @@
       "paragraphs": [
         "This is placeholder text for the Cozy Games Terms & Conditions. The final terms will cover how our games and services may be used.",
         "The real document is being brewed alongside a warm cup of tea. Check back soon."
-      ]
-    },
-    "support": {
-      "title": "Support",
-      "paragraphs": [
-        "This is placeholder text for the Cozy Games Support page. Soon you will find help articles, FAQs, and a way to reach our team here.",
-        "In the meantime, take a deep breath — everything is going to be okay."
       ]
     }
   }

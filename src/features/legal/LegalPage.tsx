@@ -6,7 +6,7 @@ interface LegalPageProps {
   content: PageContent;
 }
 
-/** Centered info page (Privacy, Terms, Support) with a link back home. */
+/** Centered info page (Privacy, Terms) with a link back home. */
 export function LegalPage({ content }: LegalPageProps): ReactElement {
   return (
     <div className="page">
