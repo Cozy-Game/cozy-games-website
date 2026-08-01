@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd /Users/andreivasiu/Admin/CompanyWebsite/frontend/src && rm App.css App.test.tsx index.css logo.svg reportWebVitals.ts setupTests.ts)",
+      "Bash(python3 -)",
+      "Bash(npm run *)",
+      "Bash(ls /Applications | grep -iE 'chrome|chromium|edge|brave' ; ls \"/Applications/Google Chrome.app/Contents/MacOS/\" 2>/dev/null)",
+      "Read(//Applications/**)",
+      "Read(//Applications/Google Chrome.app/Contents/**)",
+      "Bash(npx --yes serve -s build -l 4173)",
+      "Bash(curl -s http://localhost:4173)",
+      "Bash(curl -s -o /dev/null -w '%{http_code}\\\\n' http://localhost:4173/static/js/main.9d913c97.js)",
+      "Bash(cp \"Piramida Logo 2.png\" logo.png)",
+      "Bash(sips -Z 512 logo.png --out logo512.png)",
+      "Bash(sips -Z 192 logo.png --out logo192.png)",
+      "Bash(curl -s -o /dev/null -w '%{http_code}' http://localhost:4173)",
+      "Bash(curl -s http://localhost:4173/static/css/main.60d3a233.css -o /dev/null -w 'newcss:%{http_code}\\\\n')"
+    ],
+    "additionalDirectories": [
+      "/Users/andreivasiu/Admin/CompanyWebsite/frontend/src"
+    ]
+  }
+}

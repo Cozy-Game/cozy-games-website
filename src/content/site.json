@@ -1,0 +1,46 @@
+{
+  "hero": {
+    "title": "Cozy Games",
+    "slogan": "Games that feel like home.",
+    "blurb": "We craft simple, engaging video games - little worlds to curl up in."
+  },
+  "footer": {
+    "groups": [
+      {
+        "heading": "Contact",
+        "links": [{ "label": "Support", "href": "#/support" }]
+      },
+      {
+        "heading": "Legal",
+        "links": [
+          { "label": "Privacy Policy", "href": "#/privacy" },
+          { "label": "Terms & Conditions", "href": "#/terms" }
+        ]
+      }
+    ],
+    "copyright": "Cozy Games. Made with warmth."
+  },
+  "pages": {
+    "privacy": {
+      "title": "Privacy Policy",
+      "paragraphs": [
+        "This is placeholder text for the Cozy Games Privacy Policy. The final policy will describe what data we collect, how we use it, and the choices you have.",
+        "Until then, know this: we care about your privacy as much as we care about cozy little worlds."
+      ]
+    },
+    "terms": {
+      "title": "Terms & Conditions",
+      "paragraphs": [
+        "This is placeholder text for the Cozy Games Terms & Conditions. The final terms will cover how our games and services may be used.",
+        "The real document is being brewed alongside a warm cup of tea. Check back soon."
+      ]
+    },
+    "support": {
+      "title": "Support",
+      "paragraphs": [
+        "This is placeholder text for the Cozy Games Support page. Soon you will find help articles, FAQs, and a way to reach our team here.",
+        "In the meantime, take a deep breath — everything is going to be okay."
+      ]
+    }
+  }
+}
