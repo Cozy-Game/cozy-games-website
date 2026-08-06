@@ -1,10 +1,5 @@
 /** Shapes of the editable site copy in `src/content/site.json`. */
 
-export interface PageContent {
-  title: string;
-  paragraphs: string[];
-}
-
 export interface FooterLink {
   label: string;
   href: string;
@@ -25,5 +20,4 @@ export interface SiteContent {
     groups: FooterGroup[];
     copyright: string;
   };
-  pages: Record<string, PageContent>;
 }

@@ -1,9 +1,13 @@
 import { ReactElement, useEffect } from 'react';
-import content from './content/site.json';
 import { HomePage } from './features/home/HomePage';
-import { LegalPage } from './features/legal/LegalPage';
+import { PrivacyPolicyPage } from './features/legal/PrivacyPolicyPage';
+import { TermsPage } from './features/legal/TermsPage';
 import { useHashRoute } from './hooks/useHashRoute';
-import { PageContent } from './types/content';
+
+const routes: Record<string, () => ReactElement> = {
+  privacy: PrivacyPolicyPage,
+  terms: TermsPage,
+};
 
 /** Root component: resolves the current hash route to a page. */
 export default function App(): ReactElement {
@@ -13,7 +17,6 @@ export default function App(): ReactElement {
     window.scrollTo(0, 0);
   }, [route]);
 
-  const pages: Record<string, PageContent> = content.pages;
-  const pageContent = pages[route];
-  return pageContent ? <LegalPage content={pageContent} /> : <HomePage />;
+  const Page = routes[route] ?? HomePage;
+  return <Page />;
 }
