@@ -1,5 +1,6 @@
 import { ReactElement } from 'react';
 import content from '../content/site.json';
+import { YarnBall } from './YarnBall';
 
 /** Compact site footer with contact and legal navigation, copy from site.json. */
 export function Footer(): ReactElement {
@@ -12,14 +13,19 @@ export function Footer(): ReactElement {
             <ul className="footer__links">
               {group.links.map((link) => (
                 <li key={link.href}>
-                  <a href={link.href}>{link.label}</a>
+                  <a className="link-highlight" href={link.href}>
+                    {link.label}
+                  </a>
                 </li>
               ))}
             </ul>
           </nav>
         ))}
         <div className="footer__brand">
-          <p className="footer__brand-title">{content.hero.title}</p>
+          <p className="footer__brand-title">
+            <YarnBall size="1.05em" className="footer__brand-mark" />
+            {content.hero.title}
+          </p>
           <p className="footer__brand-blurb">{content.hero.blurb}</p>
         </div>
         <p className="footer__copyright">

@@ -1,5 +1,4 @@
 import { ReactElement } from 'react';
-import { Cubes } from '../../components/Cubes';
 import { Footer } from '../../components/Footer';
 import { useInPageAnchors } from './useInPageAnchors';
 
@@ -14,9 +13,8 @@ export function LegalDocument({ html }: LegalDocumentProps): ReactElement {
 
   return (
     <div className="page">
-      <Cubes />
       <main className="legal-doc">
-        <a className="legal-doc__back" href="#/">
+        <a className="legal-doc__back link-highlight" href="#/">
           ← Back home
         </a>
         <article

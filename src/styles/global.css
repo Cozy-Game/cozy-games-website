@@ -1,28 +1,36 @@
 /* ============================================================
    Cozy Games — design tokens & global styles
-   Palette: warm near-black base with subtle purple/copper glow;
-   cream text and glossy logo-cube accents pop against it.
+   Palette: warm paper cream, soft ink lines, the brand yellow for
+   warmth and the brand violet for play. Everything is drawn as if
+   by hand on good paper: nothing sharp, nothing loud.
    ============================================================ */
 
 :root {
-  /* Color tokens */
-  --bg-deep: #15101a;
-  --cream: #f5e9d7;
-  --lilac: #b3a4ee;
-  --lilac-light: #cdc2f7;
-  --ink: #d9cbc4;
-  --ink-soft: #a99a9f;
-  --glass: rgba(255, 255, 255, 0.06);
-  --glass-border: rgba(255, 255, 255, 0.14);
-  --shadow-dark: rgba(0, 0, 0, 0.45);
+  /* Paper */
+  --paper: #fdf9f1;
+  --paper-warm: #f7efe1;
+  --paper-card: rgba(255, 253, 248, 0.74);
+  --thread: #e6d9c6;
+
+  /* Ink */
+  --ink: #23202a;
+  --ink-soft: #756e7c;
+
+  /* Brand */
+  --yellow: #ffc61e;
+  --yellow-deep: #d99f00;
+  --violet: #a370b8;
+  --violet-deep: #82519a;
+  --violet-soft: #e3d4eb;
 
   /* Type */
-  --font-display: 'Quicksand', 'Nunito', system-ui, sans-serif;
+  --font-display: 'Shantell Sans', 'Quicksand', system-ui, sans-serif;
   --font-body: 'Nunito', system-ui, sans-serif;
 
   /* Layout */
-  --radius-card: 20px;
+  --radius-card: 24px;
   --content-max: 1200px;
+  --shadow-soft: 0 12px 34px rgba(126, 100, 62, 0.1);
 }
 
 *,
@@ -41,29 +49,63 @@ body {
   color: var(--ink);
   background:
     radial-gradient(
-      ellipse 80% 60% at 70% 10%,
-      rgba(143, 131, 214, 0.16),
+      ellipse 58% 44% at 88% 2%,
+      rgba(255, 198, 30, 0.16),
       transparent 60%
     ),
     radial-gradient(
-      ellipse 70% 55% at 15% 85%,
-      rgba(192, 122, 84, 0.14),
+      ellipse 58% 48% at 4% 98%,
+      rgba(163, 112, 184, 0.2),
       transparent 60%
     ),
-    linear-gradient(160deg, #171119 0%, #201526 45%, #241719 100%);
+    linear-gradient(168deg, #fdfaf3 0%, #fbf5ea 52%, #f8f0e1 100%);
   background-attachment: fixed;
-  background-color: var(--bg-deep);
+  background-color: var(--paper);
   min-height: 100vh;
 }
 
+::selection {
+  background: var(--yellow);
+  color: var(--ink);
+}
+
 a {
-  color: var(--lilac);
+  color: var(--violet-deep);
   text-decoration: none;
   transition: color 180ms ease-out;
 }
 
 a:hover {
-  color: var(--lilac-light);
+  color: var(--violet);
+}
+
+/* A yellow highlighter stroke that sweeps up to fill on hover. */
+.link-highlight {
+  color: var(--ink);
+  font-weight: 700;
+  background-image: linear-gradient(var(--yellow), var(--yellow));
+  background-repeat: no-repeat;
+  background-position: 0 88%;
+  background-size: 100% 2px;
+  transition:
+    background-size 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 180ms ease-out;
+}
+
+.link-highlight:hover {
+  color: var(--ink);
+  background-size: 100% 42%;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 /* ---------- Page shell ---------- */
@@ -77,23 +119,30 @@ a:hover {
   overflow-x: clip;
 }
 
-/* Fingerprint-like ridge texture, whisper-quiet */
+/* Paper tooth — two offset dot grids, only just visible. */
 .page::before {
   content: '';
   position: fixed;
   inset: 0;
   pointer-events: none;
+  z-index: 0;
   background-image:
-    repeating-radial-gradient(
-      circle at 85% 15%,
-      rgba(255, 255, 255, 0.025) 0 1.5px,
-      transparent 1.5px 9px
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(150, 118, 70, 0.05) 0.6px,
+      transparent 0.7px
     ),
-    repeating-radial-gradient(
-      circle at 10% 90%,
-      rgba(255, 255, 255, 0.02) 0 1.5px,
-      transparent 1.5px 11px
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(150, 118, 70, 0.035) 0.5px,
+      transparent 0.6px
     );
+  background-size:
+    7px 7px,
+    11px 11px;
+  background-position:
+    0 0,
+    3px 4px;
 }
 
 /* ---------- Hero ---------- */
@@ -110,105 +159,96 @@ a:hover {
   z-index: 1;
 }
 
-.hero__title {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(3rem, 12vw, 8.5rem);
-  line-height: 1.05;
-  letter-spacing: 0.045em;
-  text-transform: lowercase;
-  /* Negative top margin absorbs the logo PNG's transparent padding */
-  margin: -0.4em 0 0.2em;
-  color: var(--cream);
-  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.35);
-}
-
 .hero__slogan {
-  font-size: clamp(1.05rem, 2.4vw, 1.5rem);
-  font-weight: 600;
-  color: var(--ink-soft);
-  margin: 1.1rem 0 2.4rem;
-  max-width: 28ch;
-}
-
-.footer__brand {
-  margin-left: auto;
-  text-align: right;
-  max-width: 40ch;
-}
-
-.footer__brand-title {
   font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 1.15rem;
-  letter-spacing: 0.045em;
-  text-transform: lowercase;
-  color: var(--cream);
-  margin: 0 0 0.3rem;
-}
-
-.footer__brand-blurb {
-  font-size: 0.8rem;
-  line-height: 1.55;
+  font-size: clamp(1.15rem, 2.6vw, 1.7rem);
+  font-weight: 500;
+  line-height: 1.5;
   color: var(--ink-soft);
-  margin: 0;
-}
-
-@media (max-width: 640px) {
-  .footer__brand {
-    margin-left: 0;
-    text-align: left;
-  }
+  margin: clamp(1.2rem, 3vh, 2rem) 0 0;
+  max-width: 24ch;
 }
 
 /* ---------- Logo ---------- */
 
+/* The lockup breathes, slowly, like something asleep. */
 .logo {
-  width: clamp(190px, 31vw, 355px);
-  height: auto;
-  filter: drop-shadow(0 18px 45px rgba(0, 0, 0, 0.55));
+  display: block;
+  animation: breathe 7s ease-in-out infinite;
 }
 
-/* ---------- Decorative floating cubes ---------- */
+.logo__img {
+  display: block;
+  width: clamp(320px, 46vw, 620px);
+  height: auto;
+  transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
 
-.cubes {
+/* Come close and the cat stirs, almost ready to play again. */
+.logo:hover .logo__img {
+  transform: rotate(-1.5deg) scale(1.025);
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.022);
+  }
+}
+
+@media (max-width: 720px) {
+  .logo__img {
+    width: clamp(190px, 58vw, 330px);
+  }
+}
+
+/* ---------- Rolling yarn ball ---------- */
+
+/* Sits on the hero's floor, in the gap above the footer. */
+.rolling-yarn {
   position: absolute;
-  inset: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 110px;
   overflow: hidden;
   pointer-events: none;
   z-index: 0;
+  opacity: 0.4;
 }
 
-.cube {
+.rolling-yarn__svg {
   position: absolute;
-  border-radius: 22%;
-  /* background-color and rotate come inline per cube */
-  background-image:
-    radial-gradient(
-      circle at 30% 22%,
-      rgba(255, 255, 255, 0.35),
-      rgba(255, 255, 255, 0.08) 40%,
-      rgba(255, 255, 255, 0) 62%
-    ),
-    linear-gradient(
-      155deg,
-      rgba(255, 255, 255, 0.12),
-      rgba(255, 255, 255, 0) 45%,
-      rgba(0, 0, 0, 0.25) 100%
-    );
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow:
-    inset 0 2px 10px rgba(255, 255, 255, 0.18),
-    0 14px 36px var(--shadow-dark);
-  animation: cube-drift 12s ease-in-out infinite alternate;
+  top: 0;
+  left: 0;
+  width: 340px;
+  height: 110px;
+  /* The negative delay starts the ball already part-way across, so it is
+     in view the moment the page loads rather than after a long wait. */
+  animation: roll-across 38s linear -12s infinite;
 }
 
-@keyframes cube-drift {
+.rolling-yarn__ball {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: roll-spin 3.4s linear infinite;
+}
+
+@keyframes roll-across {
   from {
-    transform: translateY(0) scale(1);
+    transform: translateX(-360px);
   }
   to {
-    transform: translateY(-24px) scale(1.03);
+    transform: translateX(calc(100vw + 80px));
+  }
+}
+
+@keyframes roll-spin {
+  to {
+    transform: rotate(360deg);
   }
 }
 
@@ -218,20 +258,20 @@ a:hover {
   position: relative;
   z-index: 1;
   margin: 0 clamp(0.75rem, 3vw, 2rem) clamp(0.75rem, 3vw, 2rem);
-  padding: 1.1rem 1.6rem;
-  border-radius: 16px;
-  background: var(--glass);
-  border: 1px solid var(--glass-border);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 10px 30px var(--shadow-dark);
-  font-size: 0.85rem;
+  padding: 1.2rem 1.7rem;
+  border-radius: 20px;
+  background: var(--paper-card);
+  border: 1px solid var(--thread);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-soft);
+  font-size: 0.875rem;
 }
 
 .footer__inner {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem 2.25rem;
+  gap: 0.4rem 2.5rem;
   justify-content: flex-start;
   text-align: left;
 }
@@ -242,8 +282,8 @@ a:hover {
   font-size: 0.68rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--ink-soft);
-  margin: 0 0 0.3rem;
+  color: var(--violet-deep);
+  margin: 0 0 0.4rem;
 }
 
 .footer__links {
@@ -252,22 +292,65 @@ a:hover {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.1rem;
+  gap: 0.25rem;
+  align-items: flex-start;
 }
 
 .footer__links a {
   display: inline-block;
   padding: 0.1rem 0;
-  font-weight: 600;
   line-height: 1.5;
 }
 
+.footer__brand {
+  margin-left: auto;
+  text-align: right;
+  max-width: 40ch;
+}
+
+.footer__brand-title {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.45rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--ink);
+  margin: 0 0 0.3rem;
+}
+
+.footer__brand-mark {
+  flex: none;
+}
+
+.footer__brand-blurb {
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* A stitched seam, like the edge of something knitted. */
 .footer__copyright {
   flex-basis: 100%;
   text-align: left;
   font-size: 0.72rem;
   color: var(--ink-soft);
-  margin: 0.5rem 0 0;
+  margin: 0.9rem 0 0;
+  padding-top: 0.85rem;
+  border-top: 1.5px dashed var(--thread);
+}
+
+@media (max-width: 640px) {
+  .footer__brand {
+    margin-left: 0;
+    text-align: left;
+  }
+
+  .footer__brand-title {
+    justify-content: flex-start;
+  }
 }
 
 /* ---------- Legal documents (Privacy, Terms) ---------- */
@@ -284,20 +367,21 @@ a:hover {
 
 .legal-doc__back {
   display: inline-block;
-  margin-bottom: 1.25rem;
-  font-weight: 700;
+  margin-bottom: 1.35rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
 }
 
 .legal-doc__card {
   display: block;
   padding: clamp(1.5rem, 4vw, 3rem);
   border-radius: var(--radius-card);
-  background: var(--glass);
-  border: 1px solid var(--glass-border);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  box-shadow: 0 16px 50px var(--shadow-dark);
-  line-height: 1.7;
+  background: var(--paper-card);
+  border: 1px solid var(--thread);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-soft);
+  line-height: 1.75;
   overflow-wrap: break-word;
 }
 
@@ -305,10 +389,9 @@ a:hover {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: clamp(1.7rem, 5vw, 2.6rem);
-  line-height: 1.2;
-  letter-spacing: 0.01em;
+  line-height: 1.25;
   margin: 0 0 0.75rem;
-  color: var(--cream);
+  color: var(--ink);
 }
 
 .legal-doc__card h2 {
@@ -317,8 +400,8 @@ a:hover {
   font-size: clamp(1.1rem, 2.6vw, 1.4rem);
   margin: 2.4rem 0 0.6rem;
   padding-top: 1.4rem;
-  border-top: 1px solid var(--glass-border);
-  color: var(--cream);
+  border-top: 1.5px dashed var(--thread);
+  color: var(--ink);
 }
 
 .legal-doc__card h3 {
@@ -326,7 +409,7 @@ a:hover {
   font-weight: 700;
   font-size: 1.05rem;
   margin: 1.8rem 0 0.5rem;
-  color: var(--lilac-light);
+  color: var(--violet-deep);
 }
 
 /* Empty anchor targets sit above their heading — offset so it stays visible. */
@@ -345,7 +428,7 @@ a:hover {
 }
 
 .legal-doc__card strong {
-  color: var(--cream);
+  color: var(--ink);
   font-weight: 700;
 }
 
@@ -361,18 +444,19 @@ a:hover {
 }
 
 .legal-doc__card li::marker {
-  color: var(--lilac);
+  color: var(--violet);
 }
 
 .legal-doc__card a {
-  font-weight: 600;
+  font-weight: 700;
   text-decoration: underline;
-  text-decoration-color: rgba(179, 164, 238, 0.45);
+  text-decoration-color: var(--yellow);
+  text-decoration-thickness: 2px;
   text-underline-offset: 0.18em;
 }
 
 .legal-doc__card a:hover {
-  text-decoration-color: var(--lilac-light);
+  text-decoration-color: var(--violet);
 }
 
 .legal-doc__card table {
@@ -386,22 +470,25 @@ a:hover {
 
 .legal-doc__card th,
 .legal-doc__card td {
-  border: 1px solid var(--glass-border);
-  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--thread);
+  padding: 0.6rem 0.75rem;
   text-align: left;
   vertical-align: top;
   min-width: 7rem;
 }
 
 .legal-doc__card th {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--cream);
+  background: rgba(255, 198, 30, 0.14);
+  font-family: var(--font-display);
+  color: var(--ink);
 }
 
 /* ---------- Motion preferences ---------- */
 
 @media (prefers-reduced-motion: reduce) {
-  .cube {
+  .logo,
+  .rolling-yarn__svg,
+  .rolling-yarn__ball {
     animation: none;
   }
 
