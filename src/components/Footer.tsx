@@ -13,9 +13,7 @@ export function Footer(): ReactElement {
             <ul className="footer__links">
               {group.links.map((link) => (
                 <li key={link.href}>
-                  <a className="link-highlight" href={link.href}>
-                    {link.label}
-                  </a>
+                  <a href={link.href}>{link.label}</a>
                 </li>
               ))}
             </ul>

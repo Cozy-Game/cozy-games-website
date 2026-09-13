@@ -1,36 +1,39 @@
 /* ============================================================
    Cozy Games — design tokens & global styles
-   Palette: warm paper cream, soft ink lines, the brand yellow for
-   warmth and the brand violet for play. Everything is drawn as if
-   by hand on good paper: nothing sharp, nothing loud.
+   Warm paper cream, the brand yellow and violet, soft bubbly
+   shapes and hand-drawn type. Nothing sharp, nothing loud.
    ============================================================ */
 
 :root {
   /* Paper */
   --paper: #fdf9f1;
-  --paper-warm: #f7efe1;
-  --paper-card: rgba(255, 253, 248, 0.74);
-  --thread: #e6d9c6;
+  --paper-warm: #f8f0e2;
+  --paper-card: rgba(255, 253, 248, 0.82);
+  --thread: #ead9c2;
 
   /* Ink */
-  --ink: #23202a;
-  --ink-soft: #756e7c;
+  --ink: #1d1a22;
+  --ink-soft: #6f6775;
 
-  /* Brand */
-  --yellow: #ffc61e;
-  --yellow-deep: #d99f00;
-  --violet: #a370b8;
-  --violet-deep: #82519a;
-  --violet-soft: #e3d4eb;
+  /* Brand — sampled from the logo artwork */
+  --yellow: #fdcc10;
+  --yellow-deep: #d9a800;
+  --violet: #a36faf;
+
+  /* One colour for every link on the site. */
+  --link: #8b5699;
+  --link-hover: #a36faf;
 
   /* Type */
   --font-display: 'Shantell Sans', 'Quicksand', system-ui, sans-serif;
   --font-body: 'Nunito', system-ui, sans-serif;
 
   /* Layout */
-  --radius-card: 24px;
+  --radius-card: 30px;
   --content-max: 1200px;
-  --shadow-soft: 0 12px 34px rgba(126, 100, 62, 0.1);
+  --shadow-soft:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 14px 40px rgba(126, 100, 62, 0.12);
 }
 
 *,
@@ -50,15 +53,15 @@ body {
   background:
     radial-gradient(
       ellipse 58% 44% at 88% 2%,
-      rgba(255, 198, 30, 0.16),
+      rgba(253, 204, 16, 0.18),
       transparent 60%
     ),
     radial-gradient(
       ellipse 58% 48% at 4% 98%,
-      rgba(163, 112, 184, 0.2),
+      rgba(163, 111, 175, 0.2),
       transparent 60%
     ),
-    linear-gradient(168deg, #fdfaf3 0%, #fbf5ea 52%, #f8f0e1 100%);
+    linear-gradient(168deg, #fefbf5 0%, #fbf5ea 52%, #f8f0e1 100%);
   background-attachment: fixed;
   background-color: var(--paper);
   min-height: 100vh;
@@ -69,32 +72,16 @@ body {
   color: var(--ink);
 }
 
+/* One link colour, no underlines, everywhere. */
 a {
-  color: var(--violet-deep);
+  color: var(--link);
+  font-weight: 700;
   text-decoration: none;
   transition: color 180ms ease-out;
 }
 
 a:hover {
-  color: var(--violet);
-}
-
-/* A yellow highlighter stroke that sweeps up to fill on hover. */
-.link-highlight {
-  color: var(--ink);
-  font-weight: 700;
-  background-image: linear-gradient(var(--yellow), var(--yellow));
-  background-repeat: no-repeat;
-  background-position: 0 88%;
-  background-size: 100% 2px;
-  transition:
-    background-size 240ms cubic-bezier(0.22, 1, 0.36, 1),
-    color 180ms ease-out;
-}
-
-.link-highlight:hover {
-  color: var(--ink);
-  background-size: 100% 42%;
+  color: var(--link-hover);
 }
 
 .visually-hidden {
@@ -145,6 +132,78 @@ a:hover {
     3px 4px;
 }
 
+/* ---------- Playful backdrop ---------- */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Soft blown bubbles — a white highlight over a brand-coloured haze. */
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle at 34% 28%,
+      rgba(255, 255, 255, 0.72),
+      rgba(255, 255, 255, 0) 42%
+    ),
+    radial-gradient(circle at 50% 50%, var(--tint) 0 58%, transparent 75%);
+  animation-name: bubble-float;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.paw {
+  position: absolute;
+  opacity: 0.24;
+  animation-name: paw-bob;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.stray-yarn {
+  position: absolute;
+  opacity: 0.4;
+  animation-name: yarn-drift;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes bubble-float {
+  from {
+    transform: translateY(0) scale(1);
+  }
+  to {
+    transform: translateY(-28px) scale(1.06);
+  }
+}
+
+@keyframes paw-bob {
+  from {
+    transform: rotate(var(--tilt)) translateY(0);
+  }
+  to {
+    transform: rotate(var(--tilt)) translateY(-16px);
+  }
+}
+
+@keyframes yarn-drift {
+  from {
+    transform: translateY(0) rotate(0deg);
+  }
+  to {
+    transform: translateY(-22px) rotate(26deg);
+  }
+}
+
 /* ---------- Hero ---------- */
 
 .hero {
@@ -169,24 +228,51 @@ a:hover {
   max-width: 24ch;
 }
 
-/* ---------- Logo ---------- */
+/* ---------- Logo lockup ---------- */
 
-/* The lockup breathes, slowly, like something asleep. */
+/* Cat on the left, "cozy" beside it, "games" tucked underneath.
+   Everything is proportional to --cat-w, so the lockup never drifts. */
 .logo {
-  display: block;
+  --cat-w: clamp(200px, 27vw, 340px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--cat-w) * 0.08);
   animation: breathe 7s ease-in-out infinite;
 }
 
-.logo__img {
+.logo__cat {
   display: block;
-  width: clamp(320px, 46vw, 620px);
+  width: var(--cat-w);
   height: auto;
   transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* Come close and the cat stirs, almost ready to play again. */
-.logo:hover .logo__img {
-  transform: rotate(-1.5deg) scale(1.025);
+.logo:hover .logo__cat {
+  transform: rotate(-2deg) scale(1.03);
+}
+
+.logo__type {
+  position: relative;
+  /* Lifts the type so it sits against the cat's face, not its paws. */
+  top: calc(var(--cat-w) * -0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.logo__cozy {
+  display: block;
+  width: calc(var(--cat-w) * 0.72);
+  height: auto;
+}
+
+.logo__games {
+  display: block;
+  width: calc(var(--cat-w) * 0.7);
+  height: auto;
+  margin: calc(var(--cat-w) * -0.015) 0 0 calc(var(--cat-w) * 0.02);
 }
 
 @keyframes breathe {
@@ -200,8 +286,29 @@ a:hover {
 }
 
 @media (max-width: 720px) {
-  .logo__img {
-    width: clamp(190px, 58vw, 330px);
+  /* Extra floor space so the rolling yarn clears the slogan. */
+  .hero {
+    padding-bottom: 7rem;
+  }
+
+  .logo {
+    --cat-w: clamp(150px, 46vw, 240px);
+    flex-direction: column;
+    gap: calc(var(--cat-w) * 0.07);
+  }
+
+  .logo__type {
+    top: 0;
+    align-items: center;
+  }
+
+  .logo__cozy {
+    width: calc(var(--cat-w) * 0.95);
+  }
+
+  .logo__games {
+    width: calc(var(--cat-w) * 0.88);
+    margin-left: 0;
   }
 }
 
@@ -258,8 +365,8 @@ a:hover {
   position: relative;
   z-index: 1;
   margin: 0 clamp(0.75rem, 3vw, 2rem) clamp(0.75rem, 3vw, 2rem);
-  padding: 1.2rem 1.7rem;
-  border-radius: 20px;
+  padding: 1.3rem 1.8rem;
+  border-radius: 28px;
   background: var(--paper-card);
   border: 1px solid var(--thread);
   backdrop-filter: blur(10px);
@@ -282,7 +389,7 @@ a:hover {
   font-size: 0.68rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--violet-deep);
+  color: var(--ink-soft);
   margin: 0 0 0.4rem;
 }
 
@@ -409,7 +516,7 @@ a:hover {
   font-weight: 700;
   font-size: 1.05rem;
   margin: 1.8rem 0 0.5rem;
-  color: var(--violet-deep);
+  color: var(--violet);
 }
 
 /* Empty anchor targets sit above their heading — offset so it stays visible. */
@@ -432,6 +539,13 @@ a:hover {
   font-weight: 700;
 }
 
+/* Some links in the source wrap their text in <strong>/<em>, which would
+   otherwise repaint them as body ink. Links keep the link colour. */
+.legal-doc__card a strong,
+.legal-doc__card a em {
+  color: inherit;
+}
+
 .legal-doc__card ul,
 .legal-doc__card ol {
   margin: 0.6rem 0;
@@ -445,18 +559,6 @@ a:hover {
 
 .legal-doc__card li::marker {
   color: var(--violet);
-}
-
-.legal-doc__card a {
-  font-weight: 700;
-  text-decoration: underline;
-  text-decoration-color: var(--yellow);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 0.18em;
-}
-
-.legal-doc__card a:hover {
-  text-decoration-color: var(--violet);
 }
 
 .legal-doc__card table {
@@ -478,7 +580,7 @@ a:hover {
 }
 
 .legal-doc__card th {
-  background: rgba(255, 198, 30, 0.14);
+  background: rgba(253, 204, 16, 0.16);
   font-family: var(--font-display);
   color: var(--ink);
 }
@@ -487,6 +589,9 @@ a:hover {
 
 @media (prefers-reduced-motion: reduce) {
   .logo,
+  .bubble,
+  .paw,
+  .stray-yarn,
   .rolling-yarn__svg,
   .rolling-yarn__ball {
     animation: none;

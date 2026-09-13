@@ -1,4 +1,5 @@
 import { ReactElement } from 'react';
+import { CozyBackdrop } from '../../components/CozyBackdrop';
 import { Footer } from '../../components/Footer';
 import { useInPageAnchors } from './useInPageAnchors';
 
@@ -13,8 +14,9 @@ export function LegalDocument({ html }: LegalDocumentProps): ReactElement {
 
   return (
     <div className="page">
+      <CozyBackdrop />
       <main className="legal-doc">
-        <a className="legal-doc__back link-highlight" href="#/">
+        <a className="legal-doc__back" href="#/">
           ← Back home
         </a>
         <article

@@ -17,8 +17,7 @@ export function YarnBall({ size = '2rem', className, style }: YarnBallProps): Re
       className={className}
       style={{ width: size, height: size, ...style }}
       viewBox="-32 -32 64 64"
-      role="img"
-      aria-label="A ball of yarn"
+      aria-hidden="true"
     >
       <circle r="24" fill="var(--violet)" />
       <g
