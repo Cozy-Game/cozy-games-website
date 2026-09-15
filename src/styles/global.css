@@ -255,7 +255,7 @@ a:hover {
   display: block;
   width: calc(var(--cat-w) * 0.7);
   height: auto;
-  margin: calc(var(--cat-w) * -0.015) 0 0 calc(var(--cat-w) * 0.02);
+  margin: calc(var(--cat-w) * 0.04) 0 0 calc(var(--cat-w) * 0.02);
 }
 
 @keyframes breathe {
