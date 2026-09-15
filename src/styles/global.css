@@ -1,19 +1,19 @@
 /* ============================================================
    Cozy Games — design tokens & global styles
-   Warm paper cream, the brand yellow and violet, soft bubbly
+   Dusk-lilac paper, the brand violet and yellow, soft bubbly
    shapes and clean rounded type. Nothing sharp, nothing loud.
    ============================================================ */
 
 :root {
-  /* Paper */
-  --paper: #fdf9f1;
-  --paper-warm: #f8f0e2;
-  --paper-card: rgba(255, 253, 248, 0.82);
-  --thread: #ead9c2;
+  /* Paper — early evening, lamp just switched on. */
+  --paper: #f3f0fa;
+  --paper-warm: #eae5f6;
+  --paper-card: rgba(255, 252, 255, 0.8);
+  --thread: #d9d1ec;
 
   /* Ink */
-  --ink: #1d1a22;
-  --ink-soft: #6f6775;
+  --ink: #1e1a26;
+  --ink-soft: #6b6480;
 
   /* Brand — sampled from the logo artwork */
   --yellow: #fdcc10;
@@ -21,7 +21,7 @@
   --violet: #a36faf;
 
   /* One colour for every link on the site. */
-  --link: #8b5699;
+  --link: #7c4a8e;
   --link-hover: #a36faf;
 
   /* Type */
@@ -33,7 +33,7 @@
   --content-max: 1200px;
   --shadow-soft:
     inset 0 1px 0 rgba(255, 255, 255, 0.9),
-    0 14px 40px rgba(126, 100, 62, 0.12);
+    0 14px 40px rgba(78, 60, 116, 0.13);
 }
 
 *,
@@ -53,15 +53,15 @@ body {
   background:
     radial-gradient(
       ellipse 58% 44% at 88% 2%,
-      rgba(253, 204, 16, 0.18),
+      rgba(163, 111, 175, 0.24),
       transparent 60%
     ),
     radial-gradient(
       ellipse 58% 48% at 4% 98%,
-      rgba(163, 111, 175, 0.2),
-      transparent 60%
+      rgba(255, 168, 178, 0.2),
+      transparent 62%
     ),
-    linear-gradient(168deg, #fefbf5 0%, #fbf5ea 52%, #f8f0e1 100%);
+    linear-gradient(168deg, #fbf8fe 0%, #f2edfb 54%, #e7e1f6 100%);
   background-attachment: fixed;
   background-color: var(--paper);
   min-height: 100vh;
@@ -116,12 +116,12 @@ a:hover {
   background-image:
     radial-gradient(
       circle at 50% 50%,
-      rgba(150, 118, 70, 0.05) 0.6px,
+      rgba(104, 86, 140, 0.055) 0.6px,
       transparent 0.7px
     ),
     radial-gradient(
       circle at 50% 50%,
-      rgba(150, 118, 70, 0.035) 0.5px,
+      rgba(104, 86, 140, 0.04) 0.5px,
       transparent 0.6px
     );
   background-size:

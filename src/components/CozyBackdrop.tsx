@@ -16,19 +16,21 @@ interface Bubble extends Drifter {
 
 /**
  * Soft blown bubbles in the brand colours. Kept to the edges of the screen so
- * they frame the cat rather than crowd it.
+ * they frame the cat rather than crowd it. The large ones stay violet and
+ * blush so they melt into the dusk ground; only the small ones are yellow,
+ * where they read as sparks rather than haze.
  */
 const BUBBLES: Bubble[] = [
-  { size: '28vmin', top: '-8%', left: '-9%', delay: '0s', duration: '15s', tint: 'rgba(253, 204, 16, 0.4)' },
-  { size: '15vmin', top: '60%', left: '3%', delay: '-4s', duration: '12s', tint: 'rgba(163, 111, 175, 0.34)' },
-  { size: '20vmin', top: '4%', left: '77%', delay: '-7s', duration: '17s', tint: 'rgba(163, 111, 175, 0.3)' },
-  { size: '9vmin', top: '38%', left: '91%', delay: '-2s', duration: '11s', tint: 'rgba(253, 204, 16, 0.46)' },
-  { size: '32vmin', top: '66%', left: '72%', delay: '-9s', duration: '19s', tint: 'rgba(255, 186, 132, 0.4)' },
-  { size: '7vmin', top: '20%', left: '13%', delay: '-6s', duration: '10s', tint: 'rgba(253, 204, 16, 0.48)' },
-  { size: '11vmin', top: '82%', left: '31%', delay: '-3s', duration: '14s', tint: 'rgba(163, 111, 175, 0.28)' },
-  { size: '5vmin', top: '48%', left: '22%', delay: '-8s', duration: '9s', tint: 'rgba(163, 111, 175, 0.34)' },
-  { size: '6.5vmin', top: '70%', left: '52%', delay: '-1s', duration: '13s', tint: 'rgba(253, 204, 16, 0.4)' },
-  { size: '13vmin', top: '1%', left: '29%', delay: '-11s', duration: '16s', tint: 'rgba(255, 186, 132, 0.34)' },
+  { size: '28vmin', top: '-8%', left: '-9%', delay: '0s', duration: '15s', tint: 'rgba(163, 111, 175, 0.26)' },
+  { size: '15vmin', top: '60%', left: '3%', delay: '-4s', duration: '12s', tint: 'rgba(255, 168, 178, 0.3)' },
+  { size: '20vmin', top: '4%', left: '77%', delay: '-7s', duration: '17s', tint: 'rgba(163, 111, 175, 0.26)' },
+  { size: '9vmin', top: '38%', left: '91%', delay: '-2s', duration: '11s', tint: 'rgba(253, 204, 16, 0.5)' },
+  { size: '32vmin', top: '66%', left: '72%', delay: '-9s', duration: '19s', tint: 'rgba(255, 168, 178, 0.26)' },
+  { size: '7vmin', top: '20%', left: '13%', delay: '-6s', duration: '10s', tint: 'rgba(253, 204, 16, 0.52)' },
+  { size: '11vmin', top: '82%', left: '31%', delay: '-3s', duration: '14s', tint: 'rgba(163, 111, 175, 0.3)' },
+  { size: '5vmin', top: '48%', left: '22%', delay: '-8s', duration: '9s', tint: 'rgba(253, 204, 16, 0.5)' },
+  { size: '6.5vmin', top: '70%', left: '52%', delay: '-1s', duration: '13s', tint: 'rgba(255, 168, 178, 0.36)' },
+  { size: '13vmin', top: '1%', left: '29%', delay: '-11s', duration: '16s', tint: 'rgba(163, 111, 175, 0.24)' },
 ];
 
 /** Stray yarn balls the cat has lost track of. */
