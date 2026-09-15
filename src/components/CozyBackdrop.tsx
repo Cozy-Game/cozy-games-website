@@ -1,5 +1,4 @@
 import { CSSProperties, ReactElement } from 'react';
-import { PawPrint } from './PawPrint';
 import { YarnBall } from './YarnBall';
 
 /** Shared placement fields for every floating ornament. */
@@ -13,11 +12,6 @@ interface Drifter {
 
 interface Bubble extends Drifter {
   tint: string;
-}
-
-interface Paw extends Drifter {
-  tint: string;
-  tilt: string;
 }
 
 /**
@@ -37,15 +31,6 @@ const BUBBLES: Bubble[] = [
   { size: '13vmin', top: '1%', left: '29%', delay: '-11s', duration: '16s', tint: 'rgba(255, 186, 132, 0.34)' },
 ];
 
-/** Paw prints wandering across the page, as if the cat got up and came back. */
-const PAWS: Paw[] = [
-  { size: '5vmin', top: '17%', left: '7%', delay: '0s', duration: '9s', tilt: '-24deg', tint: 'var(--violet)' },
-  { size: '3.4vmin', top: '29%', left: '87%', delay: '-3s', duration: '7.5s', tilt: '20deg', tint: 'var(--yellow-deep)' },
-  { size: '4.2vmin', top: '75%', left: '12%', delay: '-5s', duration: '10s', tilt: '10deg', tint: 'var(--violet)' },
-  { size: '3vmin', top: '6%', left: '44%', delay: '-2s', duration: '8s', tilt: '-14deg', tint: 'var(--yellow-deep)' },
-  { size: '3.8vmin', top: '56%', left: '83%', delay: '-6s', duration: '11s', tilt: '28deg', tint: 'var(--violet)' },
-];
-
 /** Stray yarn balls the cat has lost track of. */
 const STRAY_YARN: Drifter[] = [
   { size: '4.6vmin', top: '33%', left: '5%', delay: '0s', duration: '13s' },
@@ -53,9 +38,9 @@ const STRAY_YARN: Drifter[] = [
 ];
 
 /**
- * The playful layer behind everything: brand-coloured bubbles, drifting paw
- * prints and a couple of stray yarn balls. Decorative only, and held still
- * for anyone who prefers reduced motion.
+ * The playful layer behind everything: brand-coloured bubbles and a couple of
+ * stray yarn balls. Decorative only, and held still for anyone who prefers
+ * reduced motion.
  */
 export function CozyBackdrop(): ReactElement {
   return (
@@ -71,18 +56,6 @@ export function CozyBackdrop(): ReactElement {
           '--tint': bubble.tint,
         } as CSSProperties;
         return <span key={`bubble-${index}`} className="bubble" style={style} />;
-      })}
-
-      {PAWS.map((paw, index) => {
-        const style = {
-          top: paw.top,
-          left: paw.left,
-          color: paw.tint,
-          animationDelay: paw.delay,
-          animationDuration: paw.duration,
-          '--tilt': paw.tilt,
-        } as CSSProperties;
-        return <PawPrint key={`paw-${index}`} className="paw" size={paw.size} style={style} />;
       })}
 
       {STRAY_YARN.map((yarn, index) => {

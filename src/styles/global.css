@@ -1,7 +1,7 @@
 /* ============================================================
    Cozy Games — design tokens & global styles
    Warm paper cream, the brand yellow and violet, soft bubbly
-   shapes and hand-drawn type. Nothing sharp, nothing loud.
+   shapes and clean rounded type. Nothing sharp, nothing loud.
    ============================================================ */
 
 :root {
@@ -25,7 +25,7 @@
   --link-hover: #a36faf;
 
   /* Type */
-  --font-display: 'Shantell Sans', 'Quicksand', system-ui, sans-serif;
+  --font-display: 'Quicksand', 'Nunito', system-ui, sans-serif;
   --font-body: 'Nunito', system-ui, sans-serif;
 
   /* Layout */
@@ -159,15 +159,6 @@ a:hover {
   animation-direction: alternate;
 }
 
-.paw {
-  position: absolute;
-  opacity: 0.24;
-  animation-name: paw-bob;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-}
-
 .stray-yarn {
   position: absolute;
   opacity: 0.4;
@@ -183,15 +174,6 @@ a:hover {
   }
   to {
     transform: translateY(-28px) scale(1.06);
-  }
-}
-
-@keyframes paw-bob {
-  from {
-    transform: rotate(var(--tilt)) translateY(0);
-  }
-  to {
-    transform: rotate(var(--tilt)) translateY(-16px);
   }
 }
 
@@ -221,8 +203,9 @@ a:hover {
 .hero__slogan {
   font-family: var(--font-display);
   font-size: clamp(1.15rem, 2.6vw, 1.7rem);
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.5;
+  letter-spacing: -0.005em;
   color: var(--ink-soft);
   margin: clamp(1.2rem, 3vh, 2rem) 0 0;
   max-width: 24ch;
@@ -497,6 +480,7 @@ a:hover {
   font-weight: 700;
   font-size: clamp(1.7rem, 5vw, 2.6rem);
   line-height: 1.25;
+  letter-spacing: -0.015em;
   margin: 0 0 0.75rem;
   color: var(--ink);
 }
@@ -590,7 +574,6 @@ a:hover {
 @media (prefers-reduced-motion: reduce) {
   .logo,
   .bubble,
-  .paw,
   .stray-yarn,
   .rolling-yarn__svg,
   .rolling-yarn__ball {
