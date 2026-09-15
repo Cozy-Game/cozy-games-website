@@ -269,11 +269,6 @@ a:hover {
 }
 
 @media (max-width: 720px) {
-  /* Extra floor space so the rolling yarn clears the slogan. */
-  .hero {
-    padding-bottom: 7rem;
-  }
-
   .logo {
     --cat-w: clamp(150px, 46vw, 240px);
     flex-direction: column;
@@ -297,7 +292,8 @@ a:hover {
 
 /* ---------- Rolling yarn ball ---------- */
 
-/* Sits on the hero's floor, in the gap above the footer. */
+/* Sits on the hero's floor, in the gap above the footer.
+   Kept while the component is parked — see RollingYarn. */
 .rolling-yarn {
   position: absolute;
   left: 0;

@@ -4,6 +4,9 @@ import { ReactElement } from 'react';
  * Decorative background motion: a ball of yarn rolling slowly across the page,
  * trailing the thread it has unwound. Purely ornamental — hidden from screen
  * readers and stilled by `prefers-reduced-motion`.
+ *
+ * Parked, not retired: the motion read as clunky, so the home page does not
+ * render it for now. Drop it back into the hero to bring it back.
  */
 export function RollingYarn(): ReactElement {
   return (
