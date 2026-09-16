@@ -1,9 +1,9 @@
 import { RefObject, useEffect, useRef } from 'react';
 
 /**
- * Keeps in-document anchors (e.g. a table of contents) working inside the
- * hash router: intercepts clicks on `#anchor` links and scrolls to the target
- * instead of letting the hash change and navigate away from the page.
+ * Keeps in-document anchors (e.g. a table of contents) working: intercepts
+ * clicks on `#anchor` links and scrolls smoothly to the target instead of
+ * letting the browser jump to it.
  */
 export function useInPageAnchors(): RefObject<HTMLElement | null> {
   const containerRef = useRef<HTMLElement>(null);
@@ -18,7 +18,7 @@ export function useInPageAnchors(): RefObject<HTMLElement | null> {
 
       const anchor = target.closest('a');
       const href = anchor?.getAttribute('href') ?? '';
-      // `#/route` links belong to the router; only plain `#id` links are ours.
+      // `#/route` is a legacy router link; only plain `#id` links are ours.
       if (!href.startsWith('#') || href.startsWith('#/') || href.length < 2) return;
 
       const destination = container.querySelector(`[id="${CSS.escape(href.slice(1))}"]`);

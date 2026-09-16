@@ -16,7 +16,7 @@ export function LegalDocument({ html }: LegalDocumentProps): ReactElement {
     <div className="page">
       <CozyBackdrop />
       <main className="legal-doc">
-        <a className="legal-doc__back" href="#/">
+        <a className="legal-doc__back" href="/">
           ← Back home
         </a>
         <article

@@ -5,11 +5,15 @@
    ============================================================ */
 
 :root {
+  /* The page is painted in both themes; saying so stops phones set to dark
+     from force-darkening the light one behind our backs. */
+  color-scheme: light dark;
+
   /* Paper — early evening, lamp just switched on. */
-  --paper: #f3f0fa;
-  --paper-warm: #eae5f6;
-  --paper-card: rgba(255, 252, 255, 0.8);
-  --thread: #d9d1ec;
+  --paper: #efe9f7;
+  --paper-warm: #e4dcf2;
+  --paper-card: rgba(255, 252, 255, 0.78);
+  --thread: #d4cbe9;
 
   /* Ink */
   --ink: #1e1a26;
@@ -24,6 +28,40 @@
   --link: #7c4a8e;
   --link-hover: #a36faf;
 
+  /* The ground: a lamp glow warming the middle of a dusk gradient, so the
+     page has a lit centre and settles into its corners. */
+  --ground:
+    radial-gradient(
+      ellipse 72% 58% at 50% 36%,
+      rgba(255, 246, 226, 0.62),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 58% 44% at 88% 2%,
+      rgba(163, 111, 175, 0.28),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 58% 48% at 4% 98%,
+      rgba(255, 168, 178, 0.28),
+      transparent 62%
+    ),
+    linear-gradient(168deg, #f7f2fc 0%, #ebe4f8 54%, #ded5f0 100%);
+
+  /* Grain — the two dot grids that give the paper its tooth. */
+  --grain-strong: rgba(104, 86, 140, 0.062);
+  --grain-soft: rgba(104, 86, 140, 0.044);
+
+  /* Ornaments. Large bubbles melt into the ground; small ones spark. */
+  --bubble-violet: rgba(163, 111, 175, 0.26);
+  --bubble-blush: rgba(255, 168, 178, 0.3);
+  --bubble-spark: rgba(253, 204, 16, 0.5);
+  --bubble-gloss: rgba(255, 255, 255, 0.72);
+  --yarn-opacity: 0.4;
+
+  /* Tinted heading row in the legal tables. */
+  --table-head: rgba(253, 204, 16, 0.16);
+
   /* Type */
   --font-display: 'Quicksand', 'Nunito', system-ui, sans-serif;
   --font-body: 'Nunito', system-ui, sans-serif;
@@ -36,6 +74,63 @@
     0 14px 40px rgba(78, 60, 116, 0.13);
 }
 
+/* ---------- Dark mode ----------
+   The same room with the lamp off: one muted plum hue the whole way through,
+   pastel rather than black, so it still reads cosy and not technical. */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #262030;
+    --paper-warm: #2e2739;
+    --paper-card: rgba(58, 49, 72, 0.6);
+    --thread: #433a50;
+
+    --ink: #f1ebf7;
+    --ink-soft: #b3a8c4;
+
+    --yellow-deep: #ffd75e;
+    --violet: #c6a5d2;
+
+    --link: #dcc2ec;
+    --link-hover: #f3e4fa;
+
+    --ground:
+      radial-gradient(
+        ellipse 72% 58% at 50% 36%,
+        rgba(126, 104, 154, 0.4),
+        transparent 70%
+      ),
+      radial-gradient(
+        ellipse 58% 44% at 88% 2%,
+        rgba(108, 88, 136, 0.42),
+        transparent 62%
+      ),
+      radial-gradient(
+        ellipse 58% 48% at 4% 98%,
+        rgba(90, 74, 116, 0.44),
+        transparent 64%
+      ),
+      linear-gradient(168deg, #2c2537 0%, #262030 54%, #1f1a28 100%);
+
+    --grain-strong: rgba(228, 216, 248, 0.05);
+    --grain-soft: rgba(228, 216, 248, 0.035);
+
+    --bubble-violet: rgba(150, 122, 176, 0.32);
+    --bubble-blush: rgba(174, 136, 166, 0.28);
+    /* Warm pale gold rather than saturated yellow: over plum, the brand
+       yellow turns olive at low opacity. This reads as lamplight. */
+    --bubble-spark: rgba(255, 226, 158, 0.22);
+    --bubble-gloss: rgba(255, 255, 255, 0.14);
+    --yarn-opacity: 0.32;
+
+    --table-head: rgba(253, 204, 16, 0.12);
+
+    --shadow-soft:
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      0 14px 40px rgba(0, 0, 0, 0.34);
+  }
+}
+
 *,
 *::before,
 *::after {
@@ -44,27 +139,29 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+
+  /* Everything that fills the screen measures against these rather than vh or
+     vmin. `lvh` is the *largest* viewport height, so it holds still while a
+     phone's address bar slides in and out; vh, dvh and vmin all change as it
+     moves, which is what made the bubbles jump mid-scroll. */
+  --stage-h: 100vh;
+  --stage-min: min(100vw, 100vh);
 }
 
+@supports (height: 100lvh) {
+  html {
+    --stage-h: 100lvh;
+    --stage-min: min(100vw, 100lvh);
+  }
+}
+
+/* Flat colour only. The gradient lives on the fixed layer below, because
+   `background-attachment: fixed` is what makes phones stutter when scrolling. */
 body {
   margin: 0;
   font-family: var(--font-body);
   color: var(--ink);
-  background:
-    radial-gradient(
-      ellipse 58% 44% at 88% 2%,
-      rgba(163, 111, 175, 0.24),
-      transparent 60%
-    ),
-    radial-gradient(
-      ellipse 58% 48% at 4% 98%,
-      rgba(255, 168, 178, 0.2),
-      transparent 62%
-    ),
-    linear-gradient(168deg, #fbf8fe 0%, #f2edfb 54%, #e7e1f6 100%);
-  background-attachment: fixed;
   background-color: var(--paper);
-  min-height: 100vh;
 }
 
 ::selection {
@@ -101,42 +198,57 @@ a:hover {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  min-height: 100dvh;
+  /* svh, not dvh: the small viewport is a fixed number, so the layout holds
+     its size — and the landing page stays exactly one screen — instead of
+     resizing every time the address bar slides. */
+  min-height: 100svh;
   position: relative;
   overflow-x: clip;
 }
 
-/* Paper tooth — two offset dot grids, only just visible. */
+/* The ground and the paper tooth on one pinned layer: two offset dot grids,
+   only just visible, over the gradient. Its height comes from --stage-h rather
+   than `inset: 0` so it keeps its exact size while the address bar moves. */
 .page::before {
   content: '';
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--stage-h);
   pointer-events: none;
   z-index: 0;
   background-image:
     radial-gradient(
       circle at 50% 50%,
-      rgba(104, 86, 140, 0.055) 0.6px,
+      var(--grain-strong) 0.6px,
       transparent 0.7px
     ),
     radial-gradient(
       circle at 50% 50%,
-      rgba(104, 86, 140, 0.04) 0.5px,
+      var(--grain-soft) 0.5px,
       transparent 0.6px
-    );
+    ),
+    var(--ground);
   background-size:
     7px 7px,
-    11px 11px;
+    11px 11px,
+    cover;
   background-position:
     0 0,
-    3px 4px;
+    3px 4px,
+    center;
+  background-repeat: repeat, repeat, no-repeat;
 }
 
 /* ---------- Playful backdrop ---------- */
 
 .backdrop {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--stage-h);
   overflow: hidden;
   pointer-events: none;
   z-index: 0;
@@ -149,7 +261,7 @@ a:hover {
   background:
     radial-gradient(
       circle at 34% 28%,
-      rgba(255, 255, 255, 0.72),
+      var(--bubble-gloss),
       rgba(255, 255, 255, 0) 42%
     ),
     radial-gradient(circle at 50% 50%, var(--tint) 0 58%, transparent 75%);
@@ -161,7 +273,7 @@ a:hover {
 
 .stray-yarn {
   position: absolute;
-  opacity: 0.4;
+  opacity: var(--yarn-opacity);
   animation-name: yarn-drift;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
@@ -195,7 +307,7 @@ a:hover {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: clamp(2rem, 6vh, 5rem) 1.5rem;
+  padding: clamp(2rem, 6svh, 5rem) 1.5rem;
   position: relative;
   z-index: 1;
 }
@@ -207,7 +319,7 @@ a:hover {
   line-height: 1.5;
   letter-spacing: -0.005em;
   color: var(--ink-soft);
-  margin: clamp(1.2rem, 3vh, 2rem) 0 0;
+  margin: clamp(1.2rem, 3svh, 2rem) 0 0;
   max-width: 24ch;
 }
 
@@ -258,6 +370,13 @@ a:hover {
   margin: calc(var(--cat-w) * 0.04) 0 0 calc(var(--cat-w) * 0.02);
 }
 
+/* The dark-mode artwork is the same drawing in white, so it drops straight
+   into the same lockup. <picture> makes the swap with no flash on load, and
+   display:contents keeps the images themselves as the flex items. */
+.logo picture {
+  display: contents;
+}
+
 @keyframes breathe {
   0%,
   100% {
@@ -269,8 +388,18 @@ a:hover {
 }
 
 @media (max-width: 720px) {
+  /* One screen, address bar and all: trim the fixed costs so the lockup,
+     the slogan and the footer clear the small viewport without scrolling. */
+  .hero {
+    padding: clamp(1rem, 3.5svh, 2.75rem) 1.25rem;
+  }
+
+  .hero__slogan {
+    margin-top: clamp(0.9rem, 2.2svh, 1.6rem);
+  }
+
   .logo {
-    --cat-w: clamp(150px, 46vw, 240px);
+    --cat-w: clamp(140px, 40vw, 210px);
     flex-direction: column;
     gap: calc(var(--cat-w) * 0.07);
   }
@@ -429,6 +558,12 @@ a:hover {
 }
 
 @media (max-width: 640px) {
+  /* Every row the footer gives back is a row the landing page does not have
+     to scroll for. */
+  .footer {
+    padding: 1.1rem 1.25rem;
+  }
+
   .footer__brand {
     margin-left: 0;
     text-align: left;
@@ -436,6 +571,11 @@ a:hover {
 
   .footer__brand-title {
     justify-content: flex-start;
+  }
+
+  .footer__copyright {
+    margin-top: 0.7rem;
+    padding-top: 0.65rem;
   }
 }
 
@@ -560,7 +700,7 @@ a:hover {
 }
 
 .legal-doc__card th {
-  background: rgba(253, 204, 16, 0.16);
+  background: var(--table-head);
   font-family: var(--font-display);
   color: var(--ink);
 }
