@@ -1,6 +1,6 @@
 /* ============================================================
    Cozy Games — design tokens & global styles
-   Dusk-lilac paper, the brand violet and yellow, soft bubbly
+   Dusk-lilac ground, the brand violet and yellow, soft bubbly
    shapes and clean rounded type. Nothing sharp, nothing loud.
    ============================================================ */
 
@@ -47,10 +47,6 @@
       transparent 62%
     ),
     linear-gradient(168deg, #f7f2fc 0%, #ebe4f8 54%, #ded5f0 100%);
-
-  /* Grain — the two dot grids that give the paper its tooth. */
-  --grain-strong: rgba(104, 86, 140, 0.062);
-  --grain-soft: rgba(104, 86, 140, 0.044);
 
   /* Ornaments. Large bubbles melt into the ground; small ones spark. */
   --bubble-violet: rgba(163, 111, 175, 0.26);
@@ -111,9 +107,6 @@
         transparent 64%
       ),
       linear-gradient(168deg, #2c2537 0%, #262030 54%, #1f1a28 100%);
-
-    --grain-strong: rgba(228, 216, 248, 0.05);
-    --grain-soft: rgba(228, 216, 248, 0.035);
 
     --bubble-violet: rgba(150, 122, 176, 0.32);
     --bubble-blush: rgba(174, 136, 166, 0.28);
@@ -206,9 +199,8 @@ a:hover {
   overflow-x: clip;
 }
 
-/* The ground and the paper tooth on one pinned layer: two offset dot grids,
-   only just visible, over the gradient. Its height comes from --stage-h rather
-   than `inset: 0` so it keeps its exact size while the address bar moves. */
+/* The ground, on one pinned layer. Its height comes from --stage-h rather than
+   `inset: 0` so it keeps its exact size while the address bar moves. */
 .page::before {
   content: '';
   position: fixed;
@@ -218,27 +210,10 @@ a:hover {
   height: var(--stage-h);
   pointer-events: none;
   z-index: 0;
-  background-image:
-    radial-gradient(
-      circle at 50% 50%,
-      var(--grain-strong) 0.6px,
-      transparent 0.7px
-    ),
-    radial-gradient(
-      circle at 50% 50%,
-      var(--grain-soft) 0.5px,
-      transparent 0.6px
-    ),
-    var(--ground);
-  background-size:
-    7px 7px,
-    11px 11px,
-    cover;
-  background-position:
-    0 0,
-    3px 4px,
-    center;
-  background-repeat: repeat, repeat, no-repeat;
+  background-image: var(--ground);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* ---------- Playful backdrop ---------- */

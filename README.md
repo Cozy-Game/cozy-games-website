@@ -42,8 +42,10 @@ src/
 - Design tokens (palette, fonts, radii) live as CSS variables at the top of `src/styles/global.css`.
 - The lockup is three files in `public/`: `cat.png`, `wordmark-cozy.png`, `wordmark-games.png`,
   composed by `src/components/Logo.tsx`. `cat-dark.png` and `wordmark-games-dark.png` are the same
-  drawings in white for dark mode; "cozy" is brand yellow and is used in both. Regenerate the dark
-  pair by recolouring the light file to white and keeping its alpha, so the geometry still matches.
+  drawings in white for dark mode; "cozy" is brand yellow and is used in both. All five are cut out
+  of `brand/High Rez White logo.png`, which holds the full lockup in one file — the cat and "games"
+  in white, "cozy" in yellow — with the white pair recoloured to black for the light theme. When a
+  new master lands, re-cut rather than rescaling the pieces.
 - Dark mode is a `prefers-color-scheme` block of token overrides at the top of `global.css`.
   `color-scheme: light dark` is declared so phones stop force-darkening the light theme themselves.
 - Anything sized to the viewport uses `--stage-h` / `--stage-min` (pinned to `lvh`) rather than
