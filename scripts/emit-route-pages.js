@@ -24,12 +24,13 @@ const fs = require('fs');
 const path = require('path');
 
 const ROUTES = {
-  privacy: { title: 'Privacy Policy — Cozy Games', document: 'privacy-policy.html' },
-  terms: { title: 'Terms of Service — Cozy Games', document: 'terms-and-conditions.html' },
+  privacy: { title: 'Privacy Policy — Cozy Games', document: 'privacyPolicy.ts' },
+  terms: { title: 'Terms of Service — Cozy Games', document: 'termsOfService.ts' },
 };
 
 const buildDir = path.join(__dirname, '..', 'build');
-const resourcesDir = path.join(__dirname, '..', '..', 'resources');
+// The .ts mirrors, not `../resources/`: that folder sits outside the repo, so the host's clone has no copy.
+const documentsDir = path.join(__dirname, '..', 'src', 'features', 'legal', 'documents');
 const indexPath = path.join(buildDir, 'index.html');
 
 if (!fs.existsSync(indexPath)) {
@@ -39,10 +40,12 @@ if (!fs.existsSync(indexPath)) {
 
 const html = fs.readFileSync(indexPath, 'utf8');
 
-/** The document's body, as `src/features/legal/documents/*.ts` mirrors it. */
+/** The document's markup: the template literal a `src/features/legal/documents/*.ts` file exports. */
 function legalBody(file) {
-  const source = fs.readFileSync(path.join(resourcesDir, file), 'utf8');
-  return source.split('<body>')[1].split('</body>')[0];
+  const source = fs.readFileSync(path.join(documentsDir, file), 'utf8');
+  const match = source.match(/= `([\s\S]*)`;\s*$/);
+  if (!match) throw new Error(`emit-route-pages: no exported template literal in ${file}.`);
+  return match[1];
 }
 
 /** The built page with the legal document pre-rendered into the root and a page title. */
