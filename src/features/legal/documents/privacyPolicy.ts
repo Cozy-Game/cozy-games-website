@@ -69,6 +69,7 @@ export const privacyPolicyHtml = `
 <ul><li><em>Firebase Remote Config and Firebase Cloud Messaging</em> (Google LLC) — a Firebase installation identifier, app version, language, time zone and country, used to deliver game settings and balance changes without an update; and, if you allow notifications, a push token used to send you reminders. Notifications can be turned off at any time in your device settings.</li></ul>
 <ul><li><em>Google AdMob and the Google User Messaging Platform</em> (Google LLC) — the advertising identifier (Google Advertising ID on Android; IDFA on iOS where you permit tracking), IP address, device information and ad interaction data, used to show and measure in-game advertisements and to record your advertising consent. In the European Economic Area, the United Kingdom and Switzerland a consent message is shown before any ad is requested; you can change your choices at any time from the game's Settings → Privacy Choices. See <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">https://policies.google.com/technologies/ads</a>.</li></ul>
 <ul><li><em>Unity LevelPlay (ironSource) ad mediation</em> (Unity Technologies) — the same categories of advertising data as above, when this network serves an ad. See <a href="https://unity.com/legal/privacy-policy" target="_blank" rel="noopener">https://unity.com/legal/privacy-policy</a>.</li></ul>
+<ul><li><em>AppsFlyer</em> (AppsFlyer Ltd.) — mobile measurement: the advertising identifier, IP address (from which an approximate country is derived), device and operating system information, the install referrer, and a few in-game milestones (tutorial completed, levels reached, purchases with their price, ad revenue), used to tell which advertising campaign brought a player and whether our marketing is worthwhile. It runs only after you agree on the first-launch consent card or consent message; if you decline, it is never started, and withdrawing consent from Settings → Privacy Choices stops it. See <a href="https://www.appsflyer.com/legal/privacy-policy/" target="_blank" rel="noopener">https://www.appsflyer.com/legal/privacy-policy/</a>.</li></ul>
 <ul><li><em>Google Play Billing and Apple In-App Purchase</em> (through Unity In-App Purchasing) — purchase receipts and transaction identifiers needed to deliver, verify and restore what you buy. We never see your payment card details; the app store handles the payment.</li></ul>
 <p>Your game progress, coins and settings are stored on your device (and, where the platform offers it, in your device's app backup) and are not sent to us.</p>
 <h3>Google API</h3>
@@ -110,7 +111,8 @@ export const privacyPolicyHtml = `
 <ul><li>Ad Networks</li>
 <li>Data Analytics Services</li>
 <li>Cloud Computing Services</li>
-<li>Performance Monitoring Tools</li></ul>
+<li>Performance Monitoring Tools</li>
+<li>Mobile Measurement (attribution) Partners</li></ul>
 <p>We also may need to share your personal information in the following situations:</p>
 <ul><li><strong>Business Transfers.</strong> We may share or transfer your information in connection with, or during negotiations of, any merger, sale of company assets, financing, or acquisition of all or a portion of our business to another company.</li></ul>
 <span id="3pwebsites"></span>
