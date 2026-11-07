@@ -1,7 +1,7 @@
 OWNERDOMAIN=cozy.game
 google.com, pub-6402837967726201, DIRECT, f08c47fec0942fa0
 ironsrc.com, 689151, DIRECT
-facebook.com, 1632794534448062, RESELLER, c3e20eee3f780d68
+facebook.com, 1824098332075453, DIRECT, c3e20eee3f780d68
 media.net, 8CUH2L333, RESELLER
 sharethrough.com, 3817, RESELLER, d53b998a7bd4ecd2
 playdigo.com, 1956, RESELLER
